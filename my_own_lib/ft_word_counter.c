@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_word_counter.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/19 16:27:05 by dstracke          #+#    #+#             */
-/*   Updated: 2018/12/19 16:29:43 by dstracke         ###   ########.fr       */
+/*   Created: 2019/01/30 11:50:10 by dstracke          #+#    #+#             */
+/*   Updated: 2019/01/30 11:51:51 by dstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strncmp(const char *s1, const char *s2, size_t n)
+int		ft_word_counter(char const *s, char c)
 {
-	while (*s1 && *s1 == *s2 && n)
+	int i;
+	int j;
+
+	j = 0;
+	i = 0;
+	while (s[i])
 	{
-		s1++;
-		s2++;
-		n--;
+		while (s[i] == c)
+			i++;
+		if (s[i])
+			j++;
+		while (s[i] && s[i] != c)
+			i++;
 	}
-	return ((unsigned char)*s1 - (unsigned char)*s2);
+	return (j);
 }

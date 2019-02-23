@@ -6,65 +6,32 @@
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:33:59 by dstracke          #+#    #+#             */
-/*   Updated: 2018/12/19 16:09:02 by dstracke         ###   ########.fr       */
+/*   Updated: 2019/01/23 19:57:30 by dstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 char	*ft_strstr(const char *haystack, const char *needle)
-/*
 {
-	size_t i;
-	const char *s;
+	size_t	i;
+	size_t	j;
+	char	*hay;
+	char	*ned;
 
-	s = haystack;
-	i = strlen(needle);
-	while (*haystack)
+	i = 0;
+	ned = (char *)needle;
+	hay = (char *)haystack;
+	if (!ned[i])
+		return (&hay[i]);
+	while (hay[i])
 	{
-		if (*haystack == *needle)
-			while (*haystack++ == *needle++)
-				i--;
-		haystack++;
+		j = 0;
+		while (ned[j] && hay[i + j] == ned[j])
+			j++;
+		if (!ned[j])
+			return (&hay[i]);
+		i++;
 	}
-	if (i == 1)
-		return (NULL);
-	else
-		return (NULL);
+	return (NULL);
 }
-*/
-{
-	const char *hay;
-	const char *ned;
-
-	hay = haystack;
-	ned = needle;
-	while (1)
-	{
-		if (!*ned)
-			return ((char*)haystack);
-		if (*ned == *hay)
-		{
-			ned++;
-			hay++;
-		}
-		else
-		{
-			ned = needle;
-			if (!*hay)
-				return (NULL);
-			haystack = hay++;
-		}
-	}
-}
-/*
-int		main()
-{
-	char a[10] = "123456789";
-	char b[3] = "12";
-
-	printf("%s", ft_strstr(a, b));
-	return (0);
-}
-*/

@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/19 15:13:36 by dstracke          #+#    #+#             */
-/*   Updated: 2018/12/19 15:33:07 by dstracke         ###   ########.fr       */
+/*   Created: 2018/12/22 13:02:58 by dstracke          #+#    #+#             */
+/*   Updated: 2019/01/23 17:18:49 by dstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strmap(char const *s, char (*f)(char))
 {
-	const char *p;
+	char	*new;
+	size_t	i;
 
-	p = NULL;
-	while (*s)
+	i = 0;
+	if (!(s))
+		return (NULL);
+	if (!(new = ft_strdup(s)))
+		return (NULL);
+	while (s[i])
 	{
-		if (*s == (char)c)
-			p = s;
-		s++;
+		new[i] = f(s[i]);
+		i++;
 	}
-	if (*s == (char)c)
-		return ((char*)s);
-	else
-		return ((char*)p);
+	new[i] = '\0';
+	return (new);
 }

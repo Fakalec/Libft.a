@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/04 18:24:26 by dstracke          #+#    #+#             */
-/*   Updated: 2018/12/18 10:50:29 by dstracke         ###   ########.fr       */
+/*   Created: 2018/12/19 15:13:36 by dstracke          #+#    #+#             */
+/*   Updated: 2019/01/23 20:38:56 by dstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strrchr(const char *s, int c)
 {
-	char *res;
-	char *dest;
-	size_t i;
+	const char	*p;
 
-	i = -1;
-	res = (char *)src;
-	dest = (char *)dst;
-	if (res < dest)
-		while (++i < len)
-			dest[len - i] = res[len - i];
-	else
-		while (--len)
-			*(dest++) = *(res++);
-	return (dst);
+	if (!*s && !s)
+		return (NULL);
+	p = NULL;
+	while (*s)
+	{
+		if (*s == (char)c)
+			p = s;
+		s++;
+	}
+	if (*s == (char)c)
+		return (char*)s;
+	return (char*)p;
 }
-/*
-int main(int argc, char *argv[])
-{
-	char a[11] = "poleuretan";
-
-	printf("%s", ft_memmove(&a[4], &a[3], 3));
-	return 0;
-}
-*/
