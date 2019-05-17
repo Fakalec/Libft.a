@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/22 13:01:41 by dstracke          #+#    #+#             */
-/*   Updated: 2019/01/23 17:21:08 by dstracke         ###   ########.fr       */
+/*   Created: 2019/01/25 12:30:56 by dstracke          #+#    #+#             */
+/*   Updated: 2019/01/25 12:48:51 by dstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	size_t	i;
-	size_t	j;
-	char	*t;
+	t_list	*link;
 
-	i = 0;
-	j = 0;
-	if (!(s1 && s2))
+	if (!(link = (t_list *)malloc(sizeof(t_list))))
 		return (NULL);
-	if (!(t = (char *)malloc(sizeof(char*) * \
-				(ft_strlen(s1) + ft_strlen(s2) + 1))))
-		return (NULL);
-	while (s1[i])
+	if (content)
 	{
-		t[i] = s1[i];
-		i++;
+		if (!(link->content = malloc(sizeof(content))))
+			return (NULL);
+		ft_memcpy(link->content, content, sizeof(content));
+		link->content_size = content_size;
 	}
-	while (s2[j])
+	else
 	{
-		t[i + j] = s2[j];
-		j++;
+		link->content = NULL;
+		link->content_size = 0;
 	}
-	t[i + j] = '\0';
-	return (t);
+	link->next = NULL;
+	return (link);
 }

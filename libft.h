@@ -6,15 +6,12 @@
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 13:26:18 by dstracke          #+#    #+#             */
-/*   Updated: 2019/02/23 09:21:20 by dstracke         ###   ########.fr       */
+/*   Updated: 2019/05/17 19:04:02 by dstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
-# define FD_MAX 4096
-# define BUFF_SIZE 1
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -93,6 +90,5 @@ t_list				*ft_lstrev(t_list *lst);
 void				ft_revwd(char *t);
 void				ft_clrmass(char **s1);
 size_t				ft_charcount(char const *s, char c);
-int					get_next_line(int const fd, char **line);
 
 #endif

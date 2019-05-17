@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/25 12:30:56 by dstracke          #+#    #+#             */
-/*   Updated: 2019/03/06 14:41:39 by dstracke         ###   ########.fr       */
+/*   Created: 2018/12/04 15:15:16 by dstracke          #+#    #+#             */
+/*   Updated: 2019/01/23 12:38:36 by dstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void const *content, size_t content_size)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	t_list	*link;
+	size_t i;
 
-	if (!(link = (t_list *)malloc(sizeof(t_list))))
-		return (NULL);
-	if (content)
-	{
-		if (!(link->content = malloc(sizeof(content))))
-			return (NULL);
-		ft_memcpy(link->content, content, content_size);
-		link->content_size = content_size;
-	}
-	else
-	{
-		link->content = NULL;
-		link->content_size = 0;
-	}
-	link->next = NULL;
-	return (link);
+	i = -1;
+	while (++i < n)
+		if (((((unsigned char *)dst)[i] = \
+						((unsigned char *)src)[i])) == (unsigned char)c)
+			return ((unsigned char *)dst + i + 1);
+	return (NULL);
 }

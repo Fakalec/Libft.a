@@ -6,26 +6,39 @@
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 12:28:46 by dstracke          #+#    #+#             */
-/*   Updated: 2019/03/05 15:38:36 by dstracke         ###   ########.fr       */
+/*   Updated: 2019/05/14 18:09:16 by dstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		ft_freewd(char **str)
+int		word_counter(char const *s, char c)
 {
-	size_t	i;
+	int i;
+	int j;
 
+	j = 0;
 	i = 0;
-	while (str[i])
+	while (s[i])
 	{
-		free(str[i]);
-		str[i++] = NULL;
+		while (s[i] == c)
+			i++;
+		if (s[i])
+			j++;
+		while (s[i] && s[i] != c)
+			i++;
 	}
+	return (j);
+}
+
+void	ft_freewd(char **str, int l)
+{
+	while (l--)
+		free(str[l]);
 	free(str);
 }
 
-char			**ft_strsplit(char const *s, char c)
+char	**ft_strsplit(char const *s, char c)
 {
 	int		i;
 	int		j;
@@ -37,7 +50,7 @@ char			**ft_strsplit(char const *s, char c)
 	i = 0;
 	if (!s)
 		return (NULL);
-	if (!(kek = (char **)malloc(sizeof(char*) * (ft_word_counter(s, c) + 1))))
+	if (!(kek = (char **)malloc(sizeof(char*) * (word_counter(s, c) + 1))))
 		return (NULL);
 	while (s[i])
 	{
@@ -48,7 +61,7 @@ char			**ft_strsplit(char const *s, char c)
 			i++;
 		if (i > j)
 			if (!(kek[word++] = ft_strndup(s + j, i - j)))
-				ft_freewd(kek);
+				ft_freewd(kek, word);
 	}
 	kek[word] = 0;
 	return (kek);
